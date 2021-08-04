@@ -49,7 +49,7 @@ func TestCheckNotExist(t *testing.T) {
 //GetMockData ...
 func GetMockData() (data []models.ShortenURL) {
 	data = []models.ShortenURL{{LongURL: "https://www.testdata.com", ShortURL: "http://localhost:8080/xVpzB5J"}}
-	err := WriteToFile(data, "test.json")
+	err := WriteToFile(data, "test.txt")
 	if err != nil {
 		return
 	}
