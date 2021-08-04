@@ -16,7 +16,7 @@ func Test_checkFile(t *testing.T) {
 		args    args
 		wantErr bool
 	}{
-		{"testfile", args{filename: "testdata.json"}, false},
+		{"testfile", args{filename: "testdata.txt"}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -58,7 +58,7 @@ func GetMockData() (data []models.ShortenURL) {
 
 func TestReadFile(t *testing.T) {
 	GetMockData()
-	filedata, err := ReadFile("test.json")
+	filedata, err := ReadFile("test.txt")
 	if err != nil {
 		t.Fatal("it should read the filedata")
 	}
@@ -70,7 +70,7 @@ func TestReadFile(t *testing.T) {
 }
 
 func TestWriteTOFile(t *testing.T) {
-	err := WriteToFile(GetMockData(), "test.json")
+	err := WriteToFile(GetMockData(), "test.txt")
 	if err != nil {
 		t.Fatal("it should write the filedata")
 	}

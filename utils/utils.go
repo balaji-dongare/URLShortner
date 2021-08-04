@@ -9,7 +9,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-const FilenName = "test.json"
+const FilenName = "test.txt"
 
 //ReadFile read the file data
 func ReadFile(filename string) (filedata []byte, err error) {
