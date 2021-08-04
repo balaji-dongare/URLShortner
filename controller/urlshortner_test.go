@@ -22,7 +22,7 @@ func TestMakeShorterURL(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusCreated {
 		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusOK)
+			status, http.StatusCreated)
 	}
 }
 
@@ -74,6 +74,21 @@ func TestMakeShorterURLErrorCondition(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusInternalServerError {
 		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusOK)
+			status, http.StatusInternalServerError)
+	}
+}
+
+func TestGetActualUrl(t *testing.T) {
+	InsertMockData()
+	req, err := http.NewRequest("GET", "/xVpzB5J", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(ActualEndpoint)
+	handler.ServeHTTP(rr, req)
+	if status := rr.Code; status != http.StatusMovedPermanently {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusMovedPermanently)
 	}
 }

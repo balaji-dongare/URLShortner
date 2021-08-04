@@ -13,5 +13,6 @@ func RunController() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/url/short", MakeShorterURL).Methods("POST")
 	r.HandleFunc("/api/url/short", GetAllURLs).Methods("GET")
+	r.HandleFunc("/{hash}", ActualEndpoint).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

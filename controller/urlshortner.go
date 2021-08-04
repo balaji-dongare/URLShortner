@@ -8,6 +8,7 @@ import (
 
 	"github.com/URLShortner/models"
 	"github.com/URLShortner/utils"
+	"github.com/gorilla/mux"
 	"github.com/speps/go-hashids"
 )
 
@@ -75,4 +76,24 @@ func GetAllURLs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(data)
+}
+
+//ActualEndpoint redirect to actual url
+func ActualEndpoint(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	hash := vars["hash"]
+	filedata, err := utils.ReadFile(utils.FilenName)
+	if err != nil {
+		log.Println("not able to read a file")
+	}
+	data := []models.ShortenURL{}
+	err = json.Unmarshal(filedata, &data)
+	if err != nil {
+		log.Println("empty file")
+	}
+	url := utils.GetActualURLt(data, hash)
+	log.Println(url)
+	if url != "" {
+		http.Redirect(w, r, url, http.StatusMovedPermanently)
+	}
 }

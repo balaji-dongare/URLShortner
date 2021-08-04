@@ -6,12 +6,15 @@
 
  ## API Spec:
   ### Genrate Shortner URL:
-   ` curl --location --request POST 'http://localhost:8080/api/url/short' \
+  eg. ` curl --location --request POST 'http://localhost:8080/api/url/short' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "long_url":"https://www.test.com"
 }' `
 
-  ### Get All Shortner URL:
-`curl --location --request GET 'http://localhost:8080/api/url/short' \
+ ### TO redirect Actual URL:
+eg.`curl --location --request GET 'http://localhost:8080/1Y0p8rG'`
+
+ ### Get All Shortner URL:
+eg.`curl --location --request GET 'http://localhost:8080/api/url/short' \
 --header 'Content-Type: application/json'`

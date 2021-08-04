@@ -50,6 +50,17 @@ func CheckIfExist(data []models.ShortenURL, long_url string) (exist bool, url mo
 	return
 }
 
+//GetActualURLt get long url
+func GetActualURLt(data []models.ShortenURL, hash string) string {
+	shortURL := "http://localhost:8080/" + hash
+	for _, urls := range data {
+		if urls.ShortURL == shortURL {
+			return urls.LongURL
+		}
+	}
+	return ""
+}
+
 func checkFile(filename string) error {
 	_, err := os.Stat(filename)
 	if os.IsNotExist(err) {
