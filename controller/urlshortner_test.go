@@ -45,7 +45,7 @@ func TestMakeShorterURLAlredyExist(t *testing.T) {
 //InsertMockData ...
 func InsertMockData() {
 	data := []models.ShortenURL{{LongURL: "https://www.testdata.com", ShortURL: "http://localhost:8080/xVpzB5J"}}
-	utils.WriteToFile(data, "test.json")
+	utils.WriteToFile(data, "test.txt")
 }
 
 func TestGetAllShorterURL(t *testing.T) {
