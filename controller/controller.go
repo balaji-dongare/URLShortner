@@ -1,13 +1,17 @@
 package controller
 
-import "github.com/gorilla/mux"
+import (
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 // RunController - Run the controller
 func RunController() {
-
 	// init router
 	r := mux.NewRouter()
-
-	r.HandleFunc("/api/url/short", MakeShorter).Methods("POST")
-	r.HandleFunc("/api/url/short", GetShorter).Methods("GET")
+	r.HandleFunc("/api/url/short", MakeShorterURL).Methods("POST")
+	r.HandleFunc("/api/url/short", GetAllURLs).Methods("GET")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
